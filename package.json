@@ -1,0 +1,13 @@
+{
+  "name": "svg-converter",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Eduard Trayt <eduard2011rus@gmail.com> (https://github.com/EdMSL)",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@neplex/vectorizer": "0.0.5",
+    "potrace": "2.1.8",
+    "svgo": "3.3.2"
+  }
+}
