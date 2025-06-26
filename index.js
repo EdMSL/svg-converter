@@ -27,25 +27,26 @@ fs.readdirSync(destPath).forEach(async (file, index) => {
   const pathToFile = path.join(destPath, file);
 
   if (fs.lstatSync(pathToFile).isFile()) {
-    // Вариант 1
-    // const src = await readFile(pathToFile);
-    // const svg = await vectorize(src, {
-    //   colorMode: ColorMode.Color,
-    //   colorPrecision: 6,
-    //   filterSpeckle: 4,
-    //   spliceThreshold: 45,
-    //   cornerThreshold: 40,
-    //   hierarchical: Hierarchical.Stacked,
-    //   mode: PathSimplifyMode.Spline,
-    //   layerDifference: 5,
-    //   lengthThreshold: 5,
-    //   maxIterations: 2,
-    //   pathPrecision: 5,
-    // });
+    // Вариант 1. Для цветных изображений.
+    // const src = ;
+    const svg = await vectorize(await readFile(pathToFile), {
+      colorMode: ColorMode.Color,
+      colorPrecision: 6,
+      filterSpeckle: 4,
+      spliceThreshold: 35,
+      cornerThreshold: 40,
+      hierarchical: Hierarchical.Stacked,
+      mode: PathSimplifyMode.Spline,
+      layerDifference: 5,
+      lengthThreshold: 5,
+      maxIterations: 10,
+      pathPrecision: 8,
+    });
 
-    // Вариант 2
-    const svg = await convertFile(pathToFile);
+    // Вариант 2. Для ч\б изображений.
+    // const svg = await convertFile(pathToFile);
 
+    // Процесс обработки.
     const result = optimize(svg);
   
     await writeFile(`${path.resolve(convertFolderPath, path.basename(file, 'png'))}svg`, result.data);
